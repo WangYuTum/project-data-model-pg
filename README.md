@@ -37,8 +37,8 @@ From the above story, we can extract some necessary information/dimentions:
 
 Since the core business process/metric is an user playing a song, the fact table should store the song play records with 
 user/song identifier together with related information about the how and where the song is played. Based on the data and tables 
-given in the project, the star schema looks like this (generated using [LucidChart](https://www.lucidchart.com/)): <br/>
-![Start Schema](assets/images/ERD.png)
+given in the project, the star schema looks like this (generated using [LucidChart](https://www.lucidchart.com/)):
+![erd](assets/images/ERD.png)
 
 
 ## ETL Process
@@ -65,7 +65,7 @@ check this [link](https://www.linkedin.com/pulse/importance-foreign-key-constrai
 * month (int): ``1 <= month <= 12``
 * year (int, the earliest recorded songs were made after 1800s according to [wikipedia](https://en.wikipedia.org/wiki/Sound_recording_and_reproduction) and 
 assuming artists and users in the database were not born before 1800s)
-	* year from *songs* table ``year >= 1800`` **or** ``year == 0`` (default or not specified)
+	* year from *songs* table ``year >= 1800`` **or** ``year == 0`` (default if not specified)
 	* year from *time* table: ``year >= 1800``
 * weekday (int): ``0 <= weekday <= 6``
 * first/last name of users length: ``1 <= len <= 100``
@@ -77,6 +77,9 @@ attributes ``start_time`` and ``user_id`` as ``NOT NULL`` in fact table *songpla
 
 - Install Postgres Database<br/>
 ``brew install postgresql``
+- Check if Postgres is installed successfully<br/>
+``postgres -V``
+<br    ><img src="assets/images/postgres_version_check.jpg" width="250" height="20">
 - Install packages
 	- Using pip command<br/>
  	``pip install psycopg2``<br/>
@@ -84,31 +87,44 @@ attributes ``start_time`` and ``user_id`` as ``NOT NULL`` in fact table *songpla
 	- **Or** Using conda environment<br/>
  	``conda install psycopg2``<br/>
  	``conda install pandas``
+- Check packages installed successfully
+<br    ><img src="assets/images/check_packages_installs.jpg" width="300" height="110">
 - (Re) Start Postgres services<br/>
 ``brew services start postgresql``
-- Check if Postgres is installed successfully<br/>
-``postgres -V``
+<br    ><img src="assets/images/start_psql_service.jpg" width="550" height="20">
 - Check Postgres Users/DBs
-	- Log in as user **postgres**:<br/>
- 	``psql postgres -U postgres``
- 	- Display all users/roles:<br/>
- 	``\du``
- 	- Display all existing databases:<br/>
- 	``\list``
- 	- Log out:<br/>
- 	``\q``
-- Create a new user<br/>
+	- Log in as user **postgres**: ``psql postgres -U postgres``
+ 	<br    ><img src="assets/images/postgres_login.jpg" width="350" height="110">
+ 	- Display all users/roles: ``\du``
+ 	<br    ><img src="assets/images/postgres_display_users.jpg" width="700" height="150">
+ 	<br    >I have already created **student** user in this example.
+ 	- Display all existing databases: ``\list``
+ 	<br    ><img src="assets/images/postgres_display_dbs.jpg" width="680" height="220">
+ 	<br    >I have already created databases **studentdb** and **sparkifydb** in this example.
+ 	- Log out: ``\q``
+ 	<br    ><img src="assets/images/postgres_logout.jpg" width="150" height="40">
+- Create a new user using following arguments:<br/>
 	- username: **student**<br/>
 	- number of connections (max): **8**<br/>
-	- current username (with privilege of creating new users/roles): **postgres**<br/>
-``createuser -c 8 -d -P -U postgres student``
-- Create default database **studentdb**<br/>
+	- current username (with privilege of creating new users/roles): **postgres**<br />
+``createuser -c 8 -d -P -U postgres student``<br/>
+Remember to set **password** as **student**
+- Create default database **studentdb** with owner/user **student**<br/>
 ``createdb studentdb -U student``
 - Verify the creation of user and database<br/>
-	- Log in as user **student**:<br/>
- 	``psql postgres -U student``
- 	- List databases:<br/>
- 	``\list``
+	- Log in as user **student**: ``psql postgres -U student``
+ 	<br    ><img src="assets/images/postgres_login2.jpg" width="350" height="110">
+ 	- List databases:``\list``
+ 	<br    ><img src="assets/images/postgres_display_dbs2.jpg" width="680" height="220">
+- Now you can run the scripts and python-notebooks in this project
+
+## Sample Results
+First execute ``create_tables.py`` and ``etl.py``, then run test qeuries in ``test.ipynb``
+1. Result 1<br/>
+<br    ><img src="assets/images/query_result1.jpg" width="800" height="320">
+1. Result 2<br/>
+<br    ><img src="assets/images/query_result2.jpg" width="800" height="180">
+
 
 ## Resources
 1. Setup Postgres on Mac: [Getting Started with PostgreSQL on Mac OSX](https://www.codementor.io/@engineerapart/getting-started-with-postgresql-on-mac-osx-are8jcopb)
