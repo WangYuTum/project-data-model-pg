@@ -47,7 +47,9 @@ CREATE TABLE IF NOT EXISTS songs (
     song_id    varchar         PRIMARY KEY,
     title      varchar         NOT NULL,
     artist_id  varchar         NOT NULL,
-    year       int             NOT NULL,
+    year       int             NOT NULL DEFAULT 0,
+               CONSTRAINT song_year
+               CHECK(year >= 1800 OR year = 0),
     duration   DECIMAL(10, 5)  NOT NULL,
                CONSTRAINT duration_range
                CHECK(duration BETWEEN 0.00000 AND 86400.00000)
