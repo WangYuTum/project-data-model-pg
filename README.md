@@ -1,3 +1,14 @@
+# Data Engineer Nanodegree Subproject
+The repository contains the project information of the **Data Modelling with Postgres** from Udacity Nanodegree 
+**[Data Engineer](https://www.udacity.com/course/data-engineer-nanodegree--nd027)**. Please refer to the 
+course [website](https://www.udacity.com/course/data-engineer-nanodegree--nd027) for more details.<br/>
+
+Project scenario: A startup called Sparkify wants to analyze the data they've been collecting on songs and 
+user activity on their new music streaming app.<br/>
+
+Project goals: Build a database using Postgres and write an ETL pipeline to transfer raw data (*JSON*) to 
+database tables for analytic purposes.
+
 ## Business Process / Data Requirements
 - Analytics team wants to understand **what songs** their **users** are listening to.
 - Analytics team wants a **Postgres DB** with tables designed to **optimize queries** on song play analysis.
