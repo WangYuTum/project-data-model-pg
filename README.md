@@ -63,9 +63,24 @@ given in the project, the star schema looks like this (generated using [LucidCha
   	- *songplays*
 4. Test the entire ETL process and runing some queries.
 
-## TODOs
-1. Use parallel processing to process songs data (take care of duplicate rows in *artists* and *songs* tables)
-2. Use parallel processing to process songplay data (take care of duplicate rows in *users* and *time* tables)
+## Usage and Sample Results
+Usage:
+1. Make sure all packages are installed and Postgres is configured with username **student**, 
+see section **Implementation Details/Notes** below for more details.
+2. Execute ``create_tables.py`` to drop existing database and tables and create new ones.
+3. Execute ``etl.py`` to run the ETL process and load data to database tables.
+4. Open ``test.ipynb`` in python notebook to verify results.<br />
+
+Additional files:
+- ``sql_queries.py`` implements all sql queries in this project including creating/droping tables,
+inserting records into tables, etc.
+- ``etl.ipynb`` is a step-by-step guide to create the complete ETL process.<br />
+
+Some of the sample results after running ``test.ipynb``:
+1. Result 1<br/>
+<br    ><img src="assets/images/query_result1.jpg" width="800" height="320">
+1. Result 2<br/>
+<br    ><img src="assets/images/query_result2.jpg" width="800" height="180">
 
 ## Implementation Details/Notes
 * Explicitly declear **FOREIGN KEY** to enforce referential integrity and improve performance, 
@@ -133,13 +148,9 @@ Remember to set **password** as **student**
  	<br    ><img src="assets/images/postgres_display_dbs2.jpg" width="680" height="220">
 - Now you can run the scripts and python-notebooks in this project
 
-## Sample Results
-First execute ``create_tables.py`` and ``etl.py``, then run test qeuries in ``test.ipynb``
-1. Result 1<br/>
-<br    ><img src="assets/images/query_result1.jpg" width="800" height="320">
-1. Result 2<br/>
-<br    ><img src="assets/images/query_result2.jpg" width="800" height="180">
-
+## TODOs
+1. Use parallel processing to process songs data (take care of duplicate rows in *artists* and *songs* tables)
+2. Use parallel processing to process songplay data (take care of duplicate rows in *users* and *time* tables)
 
 ## Resources
 1. Setup Postgres on Mac: [Getting Started with PostgreSQL on Mac OSX](https://www.codementor.io/@engineerapart/getting-started-with-postgresql-on-mac-osx-are8jcopb)
