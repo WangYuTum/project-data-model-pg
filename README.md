@@ -63,6 +63,10 @@ given in the project, the star schema looks like this (generated using [LucidCha
   	- *songplays*
 4. Test the entire ETL process and runing some queries.
 
+## TODOs
+1. Use parallel processing to process songs data (take care of duplicate rows in *artists* and *songs* tables)
+2. Use parallel processing to process songplay data (take care of duplicate rows in *users* and *time* tables)
+
 ## Implementation Details/Notes
 * Explicitly declear **FOREIGN KEY** to enforce referential integrity and improve performance, 
 check this [link](https://www.linkedin.com/pulse/importance-foreign-key-constraint-tim-miles/)
