@@ -6,7 +6,14 @@ from sql_queries import *
 
 
 def process_song_file(cur, filepath):
-    # open song file
+    """
+    Process and extract information about songs and artists from the given JSON file 
+    and insert songs and artists data into the corresponding tables.
+
+    Arg(s):
+        cur: cursor of the database connection
+        filepath: filepath of the JSON file
+    """
     try:
         df = pd.DataFrame(pd.read_json(filepath, typ='series').to_dict(), index=[0])
     except Exception as e:
@@ -24,7 +31,14 @@ def process_song_file(cur, filepath):
 
 
 def process_log_file(cur, filepath):
-    # open log file
+    """
+    Process and extract information about users, timestamps and songplay records from the given JSON file 
+    and insert users, timestamps and songplay data into the corresponding tables.
+
+    Arg(s):
+        cur: cursor of the database connection
+        filepath: filepath of the JSON file
+    """
     try:
         df = pd.read_json(filepath, lines=True)
     except Exception as e:
@@ -71,6 +85,15 @@ def process_log_file(cur, filepath):
 
 
 def process_data(cur, conn, filepath, func):
+    """
+    Process the raw data (JSON files) and insert data into database by calling func.
+
+    Arg(s):
+        cur: cursor of the database connection
+        conn: connection to the database
+        filepath: directory to a collection of files to be processed by func
+        func: the function to be called to process the files within filepath
+    """
     # get all files matching extension from directory
     all_files = []
     for root, dirs, files in os.walk(filepath):
