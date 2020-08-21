@@ -8,7 +8,7 @@ time_table_drop = "DROP TABLE IF EXISTS time;"
 
 # CREATE TABLES
 
-# fact_songplays
+# fact table: songplays
 songplay_table_create = (
 """
 CREATE TABLE IF NOT EXISTS songplays (
@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS songplays (
 );
 """)
 
-# dim_users
+# dim table: users
 user_table_create = (
 """
 CREATE TABLE IF NOT EXISTS users (
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS users (
 );
 """)
 
-# dim_songs
+# dim table: songs
 song_table_create = (
 """
 CREATE TABLE IF NOT EXISTS songs (
@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS songs (
 );
 """)
 
-# dim_artists
+# dim table: artists
 artist_table_create = (
 """
 CREATE TABLE IF NOT EXISTS artists (
@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS artists (
 );
 """)
 
-# dim_time
+# dim table: time
 time_table_create = (
 """
 CREATE TABLE IF NOT EXISTS time (
@@ -141,7 +141,7 @@ VALUES (%s, %s, %s, %s, %s, %s, %s, %s);
 """)
 
 
-# FIND SONGS
+# find song_id and artist_id that match (artist_name, song_name, song_len)
 
 song_select = (
 """
